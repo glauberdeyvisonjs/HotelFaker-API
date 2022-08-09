@@ -15,6 +15,7 @@ function showPassword() {
 
 }
 
+
 document.getElementById('btn-login').addEventListener('click', function(e) {
     e.preventDefault();
     alert('Você está logado!')
