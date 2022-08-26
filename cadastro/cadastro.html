@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Futura Tech - Cadastro</title>
-    <link rel="stylesheet" href="/login-helper/cadastro/css/styles-cadastro.css">
+    <link
+      rel="stylesheet"
+      href="/login-helper/cadastro/css/styles-cadastro.css"
+    />
     <script src="./js/index.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,69 +22,72 @@
       crossorigin="anonymous"
       defer
     ></script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Futura Tech - Cadastro</h1>
-      </header>
-  
-      <main>
-        <form>
-          <section class="input-container">
+      <h1>Futura Tech - Cadastro</h1>
+    </header>
 
-            <div class="input-container">
-              <span>Insira seu nome:</span>
-            <input type="text" placeholder="Ex: João da Silva">
-            </div>
+    <main>
+      <form>
+        <section class="input-container">
+          <div class="input-container">
+            <span>Insira seu nome:</span>
+            <input type="text" placeholder="Ex: João da Silva" />
+          </div>
 
-            <div class="input-container">
-              <span>Insira seu e-mail:</span>
-              <input type="email" placeholder="seuemail@exemplo.com" />
-            </div>
+          <div class="input-container">
+            <span>Insira seu e-mail:</span>
+            <input type="email" placeholder="seuemail@exemplo.com" />
+          </div>
 
-  
-            <div class="password-container">
+          <div class="password-container">
+            <span>Insira sua senha:</span>
 
-                <span>Insira sua senha:</span>
-              <input type="password" id="field-password" placeholder="12345678" />
-              <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
-              <i
-                class="fa-solid fa-eye-slash"
-                id="eye-slash"
-                onclick="showPassword()"
-              ></i>
-            </div>
-            <div class="password-container-c">
-                <span>Confirme sua senha:</span>
-              <input type="password" id="field-password-c" placeholder="12345678" />
-              <i class="fa-solid fa-eye" id="eye-c" onclick="showPasswordC()"></i>
-              <i
-                class="fa-solid fa-eye-slash"
-                id="eye-slash-c"
-                onclick="showPasswordC()"
-              ></i>
-            </div>
-          </section>
-  
-          <button id="btn-cadastro">Cadastre-se</button>
-  
-          <section class="links-container">
-            <span>ou cadastre-se com:</span>
-  
-            <aside>
-              <a href=""><i class="fa-brands fa-google google"></i></a>
-              <a href=""><i class="fa-brands fa-linkedin-in linkedin"></i></a>
-              <a href=""><i class="fa-brands fa-facebook-f facebook"></i></a>
-            </aside>
-          </section>
+            <input type="password" id="field-password" placeholder="********"/>
+            <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
+            <i
+              class="fa-solid fa-eye-slash"
+              id="eye-slash"
+              onclick="showPassword()"
+            ></i>
+          </div>
+          <div class="password-container-c">
+            <span>Confirme sua senha:</span>
+            <input
+              type="password"
+              id="field-password-c"
+              placeholder="********"
+            />
+            <i class="fa-solid fa-eye" id="eye-c" onclick="showPasswordC()"></i>
+            <i
+              class="fa-solid fa-eye-slash"
+              id="eye-slash-c"
+              onclick="showPasswordC()"
+            ></i>
+          </div>
+        </section>
 
-          <footer>
-            <hr />
-            <span>Já possui uma conta? <a href="/login-helper/index.html">Faça Login!</a></span>
-          </footer>
-  
-        </form>
+        <button id="btn-cadastro">Cadastre-se</button>
 
-      </main>
-</body>
+        <section class="links-container">
+          <span>ou cadastre-se com:</span>
+
+          <aside>
+            <a href=""><i class="fa-brands fa-google google"></i></a>
+            <a href=""><i class="fa-brands fa-linkedin-in linkedin"></i></a>
+            <a href=""><i class="fa-brands fa-facebook-f facebook"></i></a>
+          </aside>
+        </section>
+
+        <footer>
+          <hr />
+          <span
+            >Já possui uma conta?
+            <a href="/login-helper/index.html">Faça Login!</a></span
+          >
+        </footer>
+      </form>
+    </main>
+  </body>
 </html>

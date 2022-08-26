@@ -84,7 +84,7 @@ main form .password-container {
 main form .password-container i {
   position: absolute;
   right: 8%;
-  top: 35%;
+  top: 28%;
   color: #777;
   cursor: pointer;
 }
