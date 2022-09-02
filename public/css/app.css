@@ -227,3 +227,10 @@ main form footer a {
 main form footer a:hover {
     color: #18acfe;
 }
+
+#erros {
+  font-size: 11px;
+  color: red;
+  margin: 0%;
+  padding: 0%;
+}

@@ -26,10 +26,25 @@
         <form action={{ route('site.principal') }} method="post">
             @csrf
             <section class="input-container">
-                <input name="email" type="email" placeholder="seuemail@exemplo.com" />
+                <input name="email" value="{{ old('email') }}" type="email" placeholder="seuemail@exemplo.com" />
+
+                @if ($errors->has('email'))
+                    <div id="erros">
+                        {{ $errors->first('email') }}
+                    </div>
+                @endif
 
                 <div class="password-container">
                     <input name="senha" type="password" id="field-password" placeholder="********" />
+
+                    @if ($errors->has('senha'))
+                    <div id="erros">
+                        {{ $errors->first('senha') }}
+                    </div>
+                    @endif
+
+                    {{ isset($erro) && $erro != '' ? $erro : '' }}
+
                 </div>
             </section>
 

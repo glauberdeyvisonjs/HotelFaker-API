@@ -8,7 +8,7 @@ use App\Http\Controllers\TesteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.principal');
-Route::post('/', [PrincipalController::class, 'principal'])->name('site.principal');
+Route::post('/', [PrincipalController::class, 'login'])->name('site.principal');
 
 Route::get('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
 Route::post('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
@@ -17,7 +17,7 @@ Route::post('/cadastrar', [CadastroController::class, 'cadastrar'])->name('cadas
 Route::get('/recuperar-senha', [RecuperarController::class, 'recuperar'])->name('site.recuperar');
 Route::post('/recuperar-senha', [RecuperarController::class, 'recuperar'])->name('site.recuperar');
 
-Route::prefix('/app')->group(function(){
+Route::middleware('log.auth')->prefix('/app')->group(function(){
     Route::get('/home', [HomeController::class, 'logado'])->name('app.home');;
 });
 
