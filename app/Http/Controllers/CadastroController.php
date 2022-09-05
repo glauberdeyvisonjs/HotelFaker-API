@@ -10,25 +10,34 @@ class CadastroController extends Controller
 {
     public function cadastro(Request $request){
 
-        return view('site.cadastro');
+        $erro = '';
+        $e = 0;
+
+        if ($request->get('erro') == 1) {
+            $erro = "Erro ao cadastrar: $e";
+        }
+
+        return view('site.cadastro', ['erro' => $erro]);
     }
 
     public function cadastrar(Request $request) {
 
 
             $request->validate([
-                'nome'=>'required|min:5|max:40',
+                'nome'=>'required|min:3|max:50',
                 'email'=>'email',
-                'senha'=>'required|min:6'
+                'senha'=>'required|min:6',
+                'confirm_senha'=>'required'
             ]);
     
             try {
                 $user = new UserHelper();
                 $user->create($request->all());
                 return redirect('/');
+                
             } catch (Exception $e) {
-                return redirect('/');
-                dd($e);
+                return redirect()->route('site.cadastro', ['erro' => '1']);
+                
             }
     }
 }

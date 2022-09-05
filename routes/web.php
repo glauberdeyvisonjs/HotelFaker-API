@@ -14,8 +14,8 @@ Route::get('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cad
 Route::post('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
 Route::post('/cadastrar', [CadastroController::class, 'cadastrar'])->name('cadastrar');
 
-Route::get('/recuperar-senha', [RecuperarController::class, 'recuperar'])->name('site.recuperar');
-Route::post('/recuperar-senha', [RecuperarController::class, 'recuperar'])->name('site.recuperar');
+Route::get('/recuperar-senha', [RecuperarController::class, 'view'])->name('site.recuperar');
+Route::post('/recuperar', [RecuperarController::class, 'recuperar'])->name('recuperar');
 
 Route::middleware('log.auth')->prefix('/app')->group(function(){
     Route::get('/home', [HomeController::class, 'logado'])->name('app.home');

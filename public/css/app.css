@@ -22,7 +22,7 @@ header h1 {
 
 main {
   width: 100%;
-  min-height: 100vh;
+  min-height: 120vh;
   background: linear-gradient(#18acfe, #0166e1);
 
   display: flex;
@@ -252,9 +252,9 @@ main form footer a:hover {
 }
 
 #erros {
-  font-size: 11px;
+  font-size: 12px;
   color: red;
-  margin: 0%;
+  margin-top: 1%;
   padding: 0%;
 }
 

@@ -8,6 +8,7 @@
         @csrf
             <section class="input-container">
                 <div class="input-container">
+                
                     <span>Insira seu nome:</span>
                     <input name="nome" value="{{ old('nome') }}" type="text" placeholder="Ex: João da Silva" />
                 </div>
@@ -49,8 +50,13 @@
                         {{ $errors->first('confirm_senha') }}
                     </div>
                     @endif
+                    
                 </div>
             </section>
+
+            <div id="erros">
+                {{ isset($erro) && $erro != '' ? $erro : '' }}
+            </div>
 
             <button id="btn-cadastro" type='submit'>Cadastre-se</button>
 
