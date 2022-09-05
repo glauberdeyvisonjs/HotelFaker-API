@@ -12,7 +12,7 @@ Route::post('/', [PrincipalController::class, 'login'])->name('site.principal');
 
 Route::get('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
 Route::post('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
-Route::post('/cadastrar', [CadastroController::class, 'cadastrar'])->name('cadastrar');
+Route::post('/cadastro', [CadastroController::class, 'cadastrar'])->name('cadastrar');
 
 Route::get('/recuperar-senha', [RecuperarController::class, 'recuperar'])->name('site.recuperar');
 Route::post('/recuperar-senha', [RecuperarController::class, 'recuperar'])->name('site.recuperar');

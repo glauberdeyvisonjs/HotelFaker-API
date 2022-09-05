@@ -28,7 +28,7 @@
             <section class="input-container">
                 <div class="input-container">
                     <span>Insira seu nome:</span>
-                    <input name = "nome" value="{{ old('nome') }}" type="text" placeholder="Ex: João da Silva" />
+                    <input name="nome" value="{{ old('nome') }}" type="text" placeholder="Ex: João da Silva" />
                 </div>
 
                 @if ($errors->has('nome'))
@@ -57,7 +57,7 @@
                     <div style="font-size: 11px; color: red; margin-bot: 0px;">
                         {{ $errors->first('senha') }}
                     </div>
-                @endif
+                    @endif
 
                 </div>
                 <div class="password-container-c">

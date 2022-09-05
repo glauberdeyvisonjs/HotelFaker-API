@@ -8,35 +8,27 @@ use Exception;
 
 class CadastroController extends Controller
 {
-    public function cadastro(){
+    public function cadastro(Request $request){
 
         return view('site.cadastro');
     }
 
     public function cadastrar(Request $request) {
 
-        if($request->senha == $request->confirm_senha){
 
             $request->validate([
                 'nome'=>'required|min:5|max:40',
                 'email'=>'email',
-                'senha'=>'required|min:6',
-                'confirm-senha'=>'required'
+                'senha'=>'required|min:6'
             ]);
     
             try {
-                UserHelper::create([
-                    'nome'=>$request->nome,
-                    'email'=>$request->email,
-                    'senha'=>$request->senha
-                ]);
+                $user = new UserHelper();
+                $user->create($request->all());
                 return redirect('/');
             } catch (Exception $e) {
+                return redirect('/');
                 dd($e);
-            } 
-
-        } else {
-            
-        }
+            }
     }
 }

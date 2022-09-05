@@ -32,8 +32,8 @@ class PrincipalController extends Controller
         $user = new UserHelper();
         $existe = $user->where('email', $email)->where('senha', $senha)->get()->first();
 
-        if (isset($existe->email)) {
-            dd($user);
+        if (isset($existe->email)){
+            return redirect('/app/home');
         } else {
             return redirect()->route('site.principal', ['erro' => 1]);
         }
