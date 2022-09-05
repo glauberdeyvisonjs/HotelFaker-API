@@ -10,7 +10,7 @@
 header {
   min-height: 9vh;
   display: flex;
-  align-items: center;
+  align-items: right;
   justify-content: center;
   background-color: #383c42;
 }
@@ -46,8 +46,31 @@ main form {
   align-items: center;
 }
 
+.cadastro {
+  margin-top: 5%;
+  width: 35%;
+  height: 90vh;
+  background-color: #383c42;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.4) inset 0px 4px 4px
+    rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  padding: 2%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 main form .input-container {
   margin-top: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main form .input-container-cadastro {
+  margin-top: 3%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -233,4 +256,9 @@ main form footer a:hover {
   color: red;
   margin: 0%;
   padding: 0%;
+}
+
+header .links-header {
+  display: inline;
+  float: right;
 }

@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+@extends('site.layouts.basico')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Login Helper</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-    <script src="{{ asset('/js/app.js') }}"></script>
-
-</head>
-
-<body>
-    <header>
-        <h1>Login Helper</h1>
-    </header>
+@section('titulo', 'Login')
+@section('conteudo')
 
     <main>
         <form action={{ route('site.principal') }} method="post">
@@ -42,8 +23,10 @@
                         {{ $errors->first('senha') }}
                     </div>
                     @endif
-
-                    {{ isset($erro) && $erro != '' ? $erro : '' }}
+                    
+                    <div style="color: red;">
+                        {{ isset($erro) && $erro != '' ? $erro : '' }}
+                    </div>
 
                 </div>
             </section>
@@ -65,6 +48,5 @@
             </footer>
         </form>
     </main>
-</body>
 
-</html>
+@endsection

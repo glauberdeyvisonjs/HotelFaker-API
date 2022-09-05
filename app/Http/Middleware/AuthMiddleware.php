@@ -18,11 +18,17 @@ class AuthMiddleware
     public function handle(Request $request, Closure $next)
     {
 
-        if (true) {
-            $resposta = $next($request);
-            return $resposta;
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+          }
+
+        if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
+            return $next($request);
         } else {
-            return Response('Acesso negado. Essa rota exige autenticação!');
+            return redirect()->route('site.principal', ['erro' => 2]);
+            session_destroy();
         }
+        
+        
     }
 }
