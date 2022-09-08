@@ -134,7 +134,7 @@ main form .password-infos a:hover {
 }
 
 main form button {
-  background-color: #F32424;
+  background-color: #18acfe;
   width: 90%;
   height: 50px;
   border: 0;
@@ -170,7 +170,7 @@ main form button {
 
 main form button:hover {
   background: #fff;
-  color: #F32424;
+  color: #18acfe;
 }
 
 main form .links-container {
@@ -282,4 +282,29 @@ main form footer a:hover {
 header .links-header {
   display: inline;
   float: right;
+}
+
+.alert {
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: bolder;
+  text-shadow: 1px 1px 2px black;
+}
+
+.alert-success {
+  color: #2AFF00;
+}
+
+.alert-error {
+  color: #F32424;
+}
+
+.alert-warning {
+  color: #F8FF12;
+
+}
+
+.alert-info {
+  color: #fff;
+
 }

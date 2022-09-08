@@ -25,7 +25,7 @@ class AuthMiddleware
         if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
             return $next($request);
         } else {
-            return redirect()->route('site.principal', ['feedback' => 2]);
+            return redirect()->route('site.principal')->with('error', 'É necessário realizar login');
             session_destroy();
         }
         

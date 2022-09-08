@@ -54,9 +54,7 @@
                 </div>
             </section>
 
-            <div id="">
-                {{ isset($feedback) && $feedback != '' ? $feedback : '' }}
-            </div>
+            @include('site.layouts._partials.flash-message')
 
             <button id="btn-cadastro" type='submit'>Cadastre-se</button>
 

@@ -18,9 +18,7 @@
                 </div>
             @endif
 
-            <div style="margin-top: 5px;">
-                {{ isset($feedback) && $feedback != '' ? $feedback : '' }}
-            </div>
+            @include('site.layouts._partials.flash-message')
 
             <button id="btn-recuperar">Recuperar senha</button>
 

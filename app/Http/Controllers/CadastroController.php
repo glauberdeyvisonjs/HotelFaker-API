@@ -13,22 +13,7 @@ class CadastroController extends Controller
 {
     public function cadastro(Request $request){
 
-        $feedback = '';
-        $e = 0;
-
-        if ($request->get('feedback') == 1) {
-            $feedback = "Erro ao cadastrar: $e";
-        }
-
-        if ($request->get('feedback') == 2) {
-            $feedback = "Usuário cadastrado com sucesso!";
-        }
-
-        if ($request->get('feedback') == 3) {
-            $feedback = "Usuário já cadastrado no Sistema";
-        }
-        
-        return view('site.cadastro', ['feedback' => $feedback]);
+        return view('site.cadastro');
     }
 
     public function cadastrar(Request $request) {
@@ -45,7 +30,6 @@ class CadastroController extends Controller
                 'nome.min' => 'O nome deve ter no mínimo 3 caracteres.',
                 'nome.max' => 'O nome deve ter no máximo 50 caracteres.',
                 'email.email' => 'Você deve preencher um endereço de e-mail válido.',
-                // 'email.unique' => 'O e-mail já foi cadastrado.',
                 'senha.required' => 'A senha não pode ficar em branco.',
                 'senha.min' => 'A senha deve ter no mínimo 6 caracteres.',
                 'confirm_senha.required' => 'A confirmação de senha não pode ficar em branco.',
@@ -56,13 +40,14 @@ class CadastroController extends Controller
 
                 try {
                     $searchUser = DB::table('user_helpers')->where('email',$request->email)->first();
-                    $searchUser = (object) $searchUser;
 
                     if(is_null($searchUser)){
                         $user = new UserHelper();
                         $user->create($request->all());
-                        return redirect()->route('site.cadastro', ['feedback' => '2']);
+                        return redirect()->route('site.principal')->with('success', 'Usuário cadastrado com sucesso!');
                     } else {
+                        $searchUser = (object) $searchUser;
+
                         if(is_null($searchUser->deleted_at)){
                             return redirect()->route('site.cadastro', ['feedback' => '3']);
                         }else{
@@ -72,7 +57,7 @@ class CadastroController extends Controller
                                 'nome'=>$request->nome,
                                 'senha'=>$request->senha
                             ]);      
-                            return redirect()->route('site.cadastro', ['feedback' => '2']);
+                            return redirect()->route('site.principal')->with('success', 'Usuário cadastrado com sucesso!');
 
                         }
                     }
@@ -80,7 +65,7 @@ class CadastroController extends Controller
                     
                 } catch (Exception $e) {
                     dd($e);
-                    return redirect()->route('site.cadastro', ['feedback' => '1']);
+                    return redirect()->route('site.cadastro')->with('error', 'Erro ao cadastrar usuário');
                     
                 }
             
@@ -95,11 +80,11 @@ class CadastroController extends Controller
 
             UserHelper::query()->where('id', $id)->firstorfail()->delete();
 
-            return redirect()->route('site.principal', ['feedback' => '3']);
+            return redirect()->route('site.principal')->with('warning', 'Usuário excluido com sucesso');
 
         } catch (Exception $e) {
             dd($e);
-            return redirect()->route('site.principal', ['feedback' => '4']);
+            return redirect()->route('site.principal')->with('error', 'Erro ao deletar usuário');
         }
     }
 }

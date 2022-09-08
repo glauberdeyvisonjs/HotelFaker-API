@@ -10,25 +10,7 @@ class PrincipalController extends Controller
 {
     public function principal(Request $request){
 
-        $feedback = '';
-
-        if ($request->get('feedback') == 1) {
-            $feedback = 'Usuário ou senha inválidos.';
-        }
-
-        if ($request->get('feedback') == 2) {
-            $feedback = 'É necessário realizar login.';
-        }
-
-        if ($request->get('feedback') == 3) {
-            $feedback = 'Usuário excluído com sucesso!';
-        }
-
-        if ($request->get('feedback') == 4) {
-            $feedback = 'Erro ao deletar usuário do banco.';
-        }
-        
-        return view('site.principal', ['feedback' => $feedback]);
+        return view('site.principal');
     }
 
     public function login (Request $request){
@@ -71,7 +53,7 @@ class PrincipalController extends Controller
 
         } else {
             // dd($_SESSION);
-            return redirect()->route('site.principal', ['feedback' => '1']);
+            return redirect()->route('site.principal')->with('error', 'Usuário ou senha inválidos');
         }
         
 

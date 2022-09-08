@@ -7,6 +7,7 @@
         <form action={{ route('site.principal') }} method="post">
             @csrf
             <section class="input-container">
+
                 <input name="email" value="{{ old('email') }}" type="email" placeholder="seuemail@exemplo.com" />
 
                 @if ($errors->has('email'))
@@ -23,10 +24,8 @@
                         {{ $errors->first('senha') }}
                     </div>
                     @endif
-                    
-                    <div style="color: red;">
-                        {{ isset($feedback) && $feedback != '' ? $feedback : '' }}
-                    </div>
+
+                    @include('site.layouts._partials.flash-message')
 
                 </div>
             </section>
@@ -39,7 +38,7 @@
                 <a href="{{ asset('/recuperar-senha') }}">Esqueceu sua senha?</a>
             </section>
 
-            <button id="btn-login" type="submit">Login</button>
+            <button type="submit">Login</button>
 
             <footer>
                 <hr />

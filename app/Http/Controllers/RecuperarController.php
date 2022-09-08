@@ -9,17 +9,7 @@ class RecuperarController extends Controller
 {
     public function view(Request $request){
 
-        $feedback = '';
-
-        if ($request->get('feedback') == 1) {
-            $feedback = 'Um e-mail de recuperação foi enviado.';
-        }
-
-        if ($request->get('feedback') == 2) {
-            $feedback = 'O e-mail não consta em nosso banco de dados.';
-        }
-
-        return view('site.recuperar', ['feedback' => $feedback]);
+        return view('site.recuperar');
     }
 
     public function recuperar(Request $request) {
@@ -46,10 +36,10 @@ class RecuperarController extends Controller
             
             $_SESSION['email'] = $existe->email;
 
-            return redirect()->route('site.recuperar', ['feedback' => '1']);
+            return redirect()->route('site.recuperar')->with('info', 'Um e-mail de redefinição foi enviado');
 
         } else {
-            return redirect()->route('site.recuperar', ['feedback' => '2']);
+            return redirect()->route('site.recuperar')->with('error', 'O usuário não consta em nosso banco de dados');
         }
         
     }
