@@ -34,7 +34,7 @@ main {
 main form {
   margin-top: 5%;
   width: 35%;
-  height: 56vh;
+  height: 65vh;
   background-color: #383c42;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.4) inset 0px 4px 4px
     rgba(0, 0, 0, 0.25);
@@ -49,7 +49,7 @@ main form {
 .cadastro {
   margin-top: 5%;
   width: 35%;
-  height: 90vh;
+  height: 100vh;
   background-color: #383c42;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.4) inset 0px 4px 4px
     rgba(0, 0, 0, 0.25);
@@ -134,7 +134,7 @@ main form .password-infos a:hover {
 }
 
 main form button {
-  background-color: #18acfe;
+  background-color: #F32424;
   width: 90%;
   height: 50px;
   border: 0;
@@ -147,9 +147,30 @@ main form button {
   transition: 0.3s ease-in-out;
 }
 
+#btn-delete {
+  position: fixed;
+  bottom: 16%;
+  right: 33%;
+  height: 40px;
+  width: 100px;
+  font-size: 12px;
+}
+
+#btn-logout {
+  position: fixed;
+  right: 3%;
+  bottom: 93.3%;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+#btn-logout:hover {
+  color: #F32424;
+}
+
 main form button:hover {
   background: #fff;
-  color: #18acfe;
+  color: #F32424;
 }
 
 main form .links-container {

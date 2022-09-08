@@ -10,32 +10,48 @@ class PrincipalController extends Controller
 {
     public function principal(Request $request){
 
-        $erro = '';
+        $feedback = '';
 
-        if ($request->get('erro') == 1) {
-            $erro = 'Usuário ou senha inválidos';
+        if ($request->get('feedback') == 1) {
+            $feedback = 'Usuário ou senha inválidos.';
         }
 
-        if ($request->get('erro') == 2) {
-            $erro = 'É necessário realizar login';
+        if ($request->get('feedback') == 2) {
+            $feedback = 'É necessário realizar login.';
+        }
+
+        if ($request->get('feedback') == 3) {
+            $feedback = 'Usuário excluído com sucesso!';
+        }
+
+        if ($request->get('feedback') == 4) {
+            $feedback = 'Erro ao deletar usuário do banco.';
         }
         
-        return view('site.principal', ['erro' => $erro]);
+        return view('site.principal', ['feedback' => $feedback]);
     }
 
     public function login (Request $request){
         $regras = [
-            'email' => 'email',
+            'email' => 'email|exists:user_helpers,email',
             'senha' => 'required'
         ];
 
-        $request->validate($regras);
+        $regrasFeedback = [
+            'email.email' => 'Você deve preencher um endereço de e-mail válido.',
+            'email.exists' => 'O e-mail informado não possui cadastro em nosso sistema.',
+            'senha.required' => 'A senha não pode ficar em branco.'
+        ];
 
+        $request->validate($regras, $regrasFeedback);
+
+        $id = $request->get('id');
         $email = $request->get('email');
         $senha = $request->get('senha');
 
         $user = new UserHelper();
-        $existe = $user->where('email', $email)
+        $existe = $user
+                    ->where('email', $email)
                     ->where('senha', $senha)
                     ->first();
 
@@ -45,6 +61,7 @@ class PrincipalController extends Controller
                 session_start();
             }
             
+            $_SESSION['id'] = $existe->id;
             $_SESSION['email'] = $existe->email;
             $_SESSION['senha'] = $existe->senha;
 
@@ -54,7 +71,7 @@ class PrincipalController extends Controller
 
         } else {
             // dd($_SESSION);
-            return redirect()->route('site.principal', ['erro' => '1']);
+            return redirect()->route('site.principal', ['feedback' => '1']);
         }
         
 

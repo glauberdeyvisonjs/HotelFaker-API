@@ -4,7 +4,17 @@
 @section('conteudo')
 
     <main>
-        <a href="{{ route('app.sair') }}">Sair</a>
+        <form action={{ route('app.delete') }}>
+            <div>
+                <a href="{{ route('app.sair') }}" id="btn-logout">Logout</a>
+            </div>
+
+            <div>
+    
+                <button id="btn-delete" type="submit">Excluir conta</a>
+
+            </div>
+        </form>
     </main>
 
 @endsection

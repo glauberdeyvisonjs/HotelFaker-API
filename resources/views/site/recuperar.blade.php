@@ -18,11 +18,11 @@
                 </div>
             @endif
 
-            <button id="btn-recuperar">Recuperar senha</button>
-
-            <div>
+            <div style="margin-top: 5px;">
                 {{ isset($feedback) && $feedback != '' ? $feedback : '' }}
             </div>
+
+            <button id="btn-recuperar">Recuperar senha</button>
 
             <footer>
                 <span><a href="/">Voltar para o Login</a></span>

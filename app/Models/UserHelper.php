@@ -10,5 +10,5 @@ class UserHelper extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['nome', 'email', 'senha'];
+    protected $fillable = ['nome', 'email', 'senha','deleted_at'];
 }

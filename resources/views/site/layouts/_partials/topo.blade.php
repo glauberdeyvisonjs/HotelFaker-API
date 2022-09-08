@@ -1,3 +1,3 @@
 <header>
-    <h1>Login Helper</h1>
+    <h1>Login Helper - @yield('titulo')</h1>
 </header>

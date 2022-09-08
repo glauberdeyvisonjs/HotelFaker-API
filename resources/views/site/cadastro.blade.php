@@ -44,7 +44,7 @@
                 </div>
                 <div class="password-container">
                     <span>Confirme sua senha:</span>
-                    <input nome = "confirm_senha" type="password" id="field-password-c" placeholder="********" />
+                    <input name = "confirm_senha" type="password" id="field-password" placeholder="********" />
                     @if ($errors->has('confirm_senha'))
                     <div style="font-size: 11px; color: red; margin-bot: 0px;">
                         {{ $errors->first('confirm_senha') }}
@@ -54,8 +54,8 @@
                 </div>
             </section>
 
-            <div id="erros">
-                {{ isset($erro) && $erro != '' ? $erro : '' }}
+            <div id="">
+                {{ isset($feedback) && $feedback != '' ? $feedback : '' }}
             </div>
 
             <button id="btn-cadastro" type='submit'>Cadastre-se</button>

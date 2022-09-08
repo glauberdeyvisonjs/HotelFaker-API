@@ -25,7 +25,7 @@
                     @endif
                     
                     <div style="color: red;">
-                        {{ isset($erro) && $erro != '' ? $erro : '' }}
+                        {{ isset($feedback) && $feedback != '' ? $feedback : '' }}
                     </div>
 
                 </div>
