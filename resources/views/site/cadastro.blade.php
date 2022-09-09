@@ -24,6 +24,8 @@
                     <input name="email" value="{{ old('email') }}" type="email" placeholder="seuemail@exemplo.com" />
                 </div>
 
+                @include('site.layouts._partials.flash-message')
+
                 @if ($errors->has('email'))
                     <div style="font-size: 11px; color: red; margin-bot: 0px;">
                         {{ $errors->first('email') }}
@@ -53,8 +55,6 @@
                     
                 </div>
             </section>
-
-            @include('site.layouts._partials.flash-message')
 
             <button id="btn-cadastro" type='submit'>Cadastre-se</button>
 

@@ -6,6 +6,8 @@ use Closure;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isNull;
+
 class AuthMiddleware
 {
     /**
@@ -22,7 +24,7 @@ class AuthMiddleware
             session_start();
           }
 
-        if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
+        if(!is_null(session()->get('email'))) {
             return $next($request);
         } else {
             return redirect()->route('site.principal')->with('error', 'É necessário realizar login');

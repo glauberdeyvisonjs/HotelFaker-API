@@ -19,7 +19,7 @@ Route::post('/recuperar', [RecuperarController::class, 'recuperar'])->name('recu
 
 Route::middleware('log.auth')->prefix('/app')->group(function(){
     Route::get('/home', [HomeController::class, 'logado'])->name('app.home');
-    Route::get('/logout', [HomeController::class, 'logout'])->name('app.sair');
+    Route::get('/logout', [PrincipalController::class, 'logout'])->name('app.sair');
     Route::get('/delete', [CadastroController::class, 'delete'])->name('app.delete');
 });
 

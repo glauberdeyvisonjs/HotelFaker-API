@@ -8,12 +8,18 @@ use Exception;
 
 class PrincipalController extends Controller
 {
-    public function principal(Request $request){
+    public function principal(Request $request)
+    {
+        if(!is_null(session()->get('id'))){
+            return redirect()->route('app.home');
+        } else {
+            return view('site.principal');
 
-        return view('site.principal');
+        }
     }
 
-    public function login (Request $request){
+    public function login(Request $request)
+    {
         $regras = [
             'email' => 'email|exists:user_helpers,email',
             'senha' => 'required'
@@ -27,40 +33,45 @@ class PrincipalController extends Controller
 
         $request->validate($regras, $regrasFeedback);
 
+        //  Recupera o ID, e-mail e senha vindos do request
         $id = $request->get('id');
         $email = $request->get('email');
         $senha = $request->get('senha');
 
+        //  Cria um novo UserHelper com os parâmetros de e-mail e senha
         $user = new UserHelper();
-        $existe = $user
-                    ->where('email', $email)
-                    ->where('senha', $senha)
-                    ->first();
 
-        if (isset($existe->email)){
+        //  Atribui os parâmetros da variável $user na variável $existe apenas se for igual aos do banco de dados
+        //  Caso não sejam iguais, $existe ficará null
+        $existe = $user
+            ->where('email', $email)
+            ->where('senha', $senha)
+            ->first();
+
+        //  Se o parâmetro de e-mail vindo do request existir no banco de dados...
+        if (isset($existe->email)) {
             
+            //  Se a sessão não estiver ativa, iniciar ela
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
             }
-            
-            $_SESSION['id'] = $existe->id;
-            $_SESSION['email'] = $existe->email;
-            $_SESSION['senha'] = $existe->senha;
 
-            // dd($_SESSION);
+        //  ... atribua o id e e-mail para a session...
+            session()->put('id',$existe->id);
+            session()->put('email',$existe->email);
 
+        //  ... e redirecione para a rota home.
             return redirect()->route('app.home');
 
+        //  Se o e-mail informado não existir, redirecione de volta informando um erro.
         } else {
-            // dd($_SESSION);
             return redirect()->route('site.principal')->with('error', 'Usuário ou senha inválidos');
         }
-        
-
     }
 
-    public function logout() {
-        session_destroy();
+    public function logout()
+    {
+        session()->forget(['id','email']);
         return redirect()->route('site.principal');
     }
 }
