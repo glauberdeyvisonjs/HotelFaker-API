@@ -149,16 +149,19 @@ main form button {
 
 #btn-delete {
   position: fixed;
-  bottom: 16%;
-  right: 33%;
-  height: 40px;
-  width: 100px;
-  font-size: 12px;
+  right: 11ch;
+  bottom: 93.3%;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+#btn-delete:hover {
+  color: #F32424;
 }
 
 #btn-logout {
   position: fixed;
-  right: 3%;
+  right: 4ch;
   bottom: 93.3%;
   cursor: pointer;
   transition: 0.3s ease-in-out;

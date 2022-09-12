@@ -21,6 +21,8 @@ Route::middleware('log.auth')->prefix('/app')->group(function(){
     Route::get('/home', [HomeController::class, 'logado'])->name('app.home');
     Route::get('/logout', [PrincipalController::class, 'logout'])->name('app.sair');
     Route::get('/delete', [CadastroController::class, 'delete'])->name('app.delete');
+    Route::get('/services', [HomeController::class, 'services'])->name('app.services');
+
 });
 
 //Route::redirect('/testredirect','/');

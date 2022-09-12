@@ -10,7 +10,9 @@
             </div>
 
             <div>
-                <a href="{{ route('app.delete') }}" id="btn-delete">Excluir conta</a>
+    
+                <button id="btn-delete" type="submit">Excluir conta</a>
+
             </div>
         </form>
     </main>
