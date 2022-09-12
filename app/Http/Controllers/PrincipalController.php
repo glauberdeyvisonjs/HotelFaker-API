@@ -34,7 +34,6 @@ class PrincipalController extends Controller
         $request->validate($regras, $regrasFeedback);
 
         //  Recupera o ID, e-mail e senha vindos do request
-        $id = $request->get('id');
         $email = $request->get('email');
         $senha = $request->get('senha');
 
