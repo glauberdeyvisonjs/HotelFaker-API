@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function logado() {
+    public function logado()
+    {
+
         return view('app.home');
     }
 
-    public function services() {
+    public function services()
+    {
         return view('app.services');
     }
+
 }

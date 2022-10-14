@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CadastroController extends Controller
 {
@@ -48,6 +49,7 @@ class CadastroController extends Controller
             if (is_null($searchUser)) {
                 $user = new UserHelper();
                 $user->create($request->all());
+                $this->sendMail();
                 return redirect()->route('site.principal')->with('success', 'Usuário cadastrado com sucesso!');
 
                 //  Caso a variável venha preenchida, é porque o e-mail já foi cadastrado antes
@@ -69,6 +71,7 @@ class CadastroController extends Controller
                             'nome' => $request->nome,
                             'senha' => $request->senha
                         ]);
+                    $this->sendMail();
                     //  Após
                     return redirect()->route('site.principal')->with('success', 'Usuário cadastrado com sucesso!');
                 }
@@ -79,11 +82,8 @@ class CadastroController extends Controller
         }
     }
 
-    public function delete(UserHelper $usuario)
+    public function delete($id)
     {
-
-        //  Pega o parâmetro de ID da superglobal $_SESSION
-        $id = $_SESSION['id'];
 
         try {
 
@@ -94,6 +94,26 @@ class CadastroController extends Controller
         } catch (Exception $e) {
             //  Retorna para a tela principal com um erro
             return redirect()->route('site.principal')->with('error', 'Erro ao deletar usuário');
+        }
+    }
+
+    public function sendMail()
+    {
+        try {
+            Mail::send('email.emailVerification',['linkValidation', 'www.teste.com'], function ($message) {
+                try {
+                    $message->bcc('glauber.deyvisonjs@gmail.com', 'Glauber Deyvison')
+                        ->subject('Seja bem vindo ao Fake Hostel!');
+                } catch (\Exception $e) {
+                    return (object) [
+                        'status_code' => 500,
+                        'error' => (string) $e,
+                    ];
+                }
+            });
+            return redirect()->route('site.principal')->with('success', 'E-mail enviado com sucesso');
+        } catch (\Exception $e) {
+            dd($e);
         }
     }
 }

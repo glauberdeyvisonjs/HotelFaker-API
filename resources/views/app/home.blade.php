@@ -4,13 +4,18 @@
 @section('conteudo')
 
     <main>
-        <form action={{ route('app.delete') }}>
+        <form action={{ route('app.delete', ['id' => session('id')]) }} method="DELETE">
             <div>
                 <a href="{{ route('app.sair') }}" id="btn-logout">Logout</a>
             </div>
 
             <div>
-                <a href="{{ route('app.delete') }}" id="btn-delete">Excluir conta</a>
+                <button type="submit" id="btn-delete"
+                    style="position: fixed;
+                right: 11ch;
+                bottom: 93.3%;
+                cursor: pointer;
+                transition: 0.3s ease-in-out;">Delete</button>
             </div>
         </form>
     </main>

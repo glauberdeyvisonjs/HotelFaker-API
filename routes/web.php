@@ -13,6 +13,7 @@ Route::post('/', [PrincipalController::class, 'login'])->name('site.principal');
 Route::get('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
 Route::post('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
 Route::post('/cadastrar', [CadastroController::class, 'cadastrar'])->name('cadastrar');
+Route::post('/sendMail', [CadastroController::class, 'sendMail'])->name('sendMail');
 
 Route::get('/recuperar-senha', [RecuperarController::class, 'view'])->name('site.recuperar');
 Route::post('/recuperar', [RecuperarController::class, 'recuperar'])->name('recuperar');
@@ -20,7 +21,7 @@ Route::post('/recuperar', [RecuperarController::class, 'recuperar'])->name('recu
 Route::middleware('log.auth')->prefix('/app')->group(function(){
     Route::get('/home', [HomeController::class, 'logado'])->name('app.home');
     Route::get('/logout', [PrincipalController::class, 'logout'])->name('app.sair');
-    Route::get('/delete', [CadastroController::class, 'delete'])->name('app.delete');
+    Route::delete('/delete/{id}', [CadastroController::class, 'delete'])->name('app.delete');
     Route::get('/services', [HomeController::class, 'services'])->name('app.services');
 
 });
@@ -34,5 +35,3 @@ Route::middleware('log.auth')->prefix('/app')->group(function(){
 Route::fallback(function(){
     echo 'A rota acessada não existe. <a href="/">Clique aqui<a/> para ir para a página inicial.';
 });
-
-Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
