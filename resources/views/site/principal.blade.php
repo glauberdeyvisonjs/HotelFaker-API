@@ -38,7 +38,7 @@
                 <a href="{{ asset('/recuperar-senha') }}">Esqueceu sua senha?</a>
             </section>
 
-            <button type="submit">Login</button>
+            <button type="submit" class="btn-submit">Login</button>
 
             <footer>
                 <hr />

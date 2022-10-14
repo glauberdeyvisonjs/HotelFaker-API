@@ -4,7 +4,8 @@
 @section('conteudo')
 
     <main>
-        <form action={{ route('app.delete', ['id' => session('id')]) }} method="DELETE">
+        <form action={{ route('app.delete') }} method="POST">
+            @csrf
             <div>
                 <a href="{{ route('app.sair') }}" id="btn-logout">Logout</a>
             </div>

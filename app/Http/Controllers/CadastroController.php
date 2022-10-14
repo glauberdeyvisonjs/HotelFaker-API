@@ -82,13 +82,12 @@ class CadastroController extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete()
     {
-
         try {
 
             //  Tenta deletar o usuário com base no parâmetro recuperado do ID
-            UserHelper::query()->where('id', $id)->firstorfail()->delete();
+            UserHelper::query()->where('id', session('id'))->firstorfail()->delete();
 
             return redirect()->route('site.principal')->with('warning', 'Usuário excluido com sucesso');
         } catch (Exception $e) {
@@ -100,7 +99,7 @@ class CadastroController extends Controller
     public function sendMail()
     {
         try {
-            Mail::send('email.emailVerification',['linkValidation', 'www.teste.com'], function ($message) {
+            Mail::send('mail.emailVerification',['linkValidation', 'www.teste.com'], function ($message) {
                 try {
                     $message->bcc('glauber.deyvisonjs@gmail.com', 'Glauber Deyvison')
                         ->subject('Seja bem vindo ao Fake Hostel!');

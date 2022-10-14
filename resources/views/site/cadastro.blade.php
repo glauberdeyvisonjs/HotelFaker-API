@@ -56,7 +56,7 @@
                 </div>
             </section>
 
-            <button id="btn-cadastro" type='submit'>Cadastre-se</button>
+            <button id="btn-cadastro" type='submit' class="btn-submit">Cadastre-se</button>
 
             <footer>
                 <hr />

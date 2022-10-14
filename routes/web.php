@@ -21,7 +21,7 @@ Route::post('/recuperar', [RecuperarController::class, 'recuperar'])->name('recu
 Route::middleware('log.auth')->prefix('/app')->group(function(){
     Route::get('/home', [HomeController::class, 'logado'])->name('app.home');
     Route::get('/logout', [PrincipalController::class, 'logout'])->name('app.sair');
-    Route::delete('/delete/{id}', [CadastroController::class, 'delete'])->name('app.delete');
+    Route::post('/delete', [CadastroController::class, 'delete'])->name('app.delete');
     Route::get('/services', [HomeController::class, 'services'])->name('app.services');
 
 });
@@ -32,6 +32,6 @@ Route::middleware('log.auth')->prefix('/app')->group(function(){
 //    return redirect()->route('site.principal');
 //});
 
-Route::fallback(function(){
-    echo 'A rota acessada não existe. <a href="/">Clique aqui<a/> para ir para a página inicial.';
-});
+// Route::fallback(function(){
+//     echo 'A rota acessada não existe. <a href="/">Clique aqui<a/> para ir para a página inicial.';
+// });
