@@ -49,7 +49,8 @@ class CadastroController extends Controller
             if (is_null($searchUser)) {
                 $user = new UserHelper();
                 $user->create($request->all());
-                $this->sendMail();
+                dd($user);
+                $this->sendMail($user);
                 return redirect()->route('site.principal')->with('success', 'Usuário cadastrado com sucesso!');
 
                 //  Caso a variável venha preenchida, é porque o e-mail já foi cadastrado antes
@@ -65,13 +66,15 @@ class CadastroController extends Controller
                     //  Se a coluna estiver preenchida, a conta já foi cadastrada e excluída, então o novo cadastro é permitido
                     //  É feito um update nas colunas de nome, senha e deleted_at (null)
                 } else {
-                    $user = DB::table('user_helpers')->where('id', $searchUser->id)->whereNotNull('deleted_at')
+                    $user = UserHelper::select()->where('id', $searchUser->id)->whereNotNull('deleted_at')
                         ->update([
                             'deleted_at' => null,
                             'nome' => $request->nome,
                             'senha' => $request->senha
                         ]);
-                    $this->sendMail();
+                    dd($user);
+
+                    $this->sendMail($user);
                     //  Após
                     return redirect()->route('site.principal')->with('success', 'Usuário cadastrado com sucesso!');
                 }
@@ -85,24 +88,27 @@ class CadastroController extends Controller
     public function delete()
     {
         try {
-
+            // dd('caiu aqui');
             //  Tenta deletar o usuário com base no parâmetro recuperado do ID
-            UserHelper::query()->where('id', session('id'))->firstorfail()->delete();
+            UserHelper::query()->where('id', session('id'))->update([
+                'deleted_at' => Carbon::now(),
+            ]);
 
             return redirect()->route('site.principal')->with('warning', 'Usuário excluido com sucesso');
         } catch (Exception $e) {
             //  Retorna para a tela principal com um erro
+            dd($e);
             return redirect()->route('site.principal')->with('error', 'Erro ao deletar usuário');
         }
     }
 
-    public function sendMail()
+    public function sendMail($user)
     {
         try {
-            Mail::send('mail.emailVerification',['linkValidation', 'www.teste.com'], function ($message) {
+            Mail::send('mail.emailVerification', ['linkValidation', 'www.teste.com'], function ($message) {
                 try {
-                    $message->bcc('glauber.deyvisonjs@gmail.com', 'Glauber Deyvison')
-                        ->subject('Seja bem vindo ao Fake Hostel!');
+                    $message->bcc($user->email, $user->nome)
+                        ->subject('Seja bem vindo ao Fake Luxury Hostel, ' . $user->nome . '!');
                 } catch (\Exception $e) {
                     return (object) [
                         'status_code' => 500,

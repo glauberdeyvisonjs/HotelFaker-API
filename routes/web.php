@@ -8,7 +8,7 @@ use App\Http\Controllers\TesteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.principal');
-Route::post('/', [PrincipalController::class, 'login'])->name('site.principal');
+Route::post('/', [PrincipalController::class, 'login'])->name('site.login');
 
 Route::get('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
 Route::post('/cadastro', [CadastroController::class, 'cadastro'])->name('site.cadastro');
