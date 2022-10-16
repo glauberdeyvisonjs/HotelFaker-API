@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class CadastroController extends Controller
@@ -44,20 +45,23 @@ class CadastroController extends Controller
             //  Puxa da tabela a informação de e-mail e compara com a informação vinda do request
             //  Caso tenha uma combinação igual, preencherá a variável, caso não tenha, a variável fica nula
             $searchUser = DB::table('user_helpers')->where('email', $request->email)->first();
+            // dd($searchUser);
 
             //  Caso a variável seja nula, o e-mail nunca foi cadastrado, logo a requisição de cadastro será completada
             if (is_null($searchUser)) {
                 $user = new UserHelper();
-                $user->create($request->all());
-                dd($user);
-                $this->sendMail($user);
+                $user->email = $request->email;
+                $user->nome = $request->nome;
+                $user->senha = Hash::make($request->senha);
+                $user->save();
+                $this->sendMail($request);
                 return redirect()->route('site.principal')->with('success', 'Usuário cadastrado com sucesso!');
 
                 //  Caso a variável venha preenchida, é porque o e-mail já foi cadastrado antes
                 //  Deve-se verificar se a coluna "deleted_at" foi preenchida
             } else {
 
-                $searchUser = (object) $searchUser;
+                // $searchUser = (object) $searchUser;
 
                 //  Se a coluna "deleted_at" for nula, então o e-mail possui cadastro ativo, então dará erro
                 if (is_null($searchUser->deleted_at)) {
@@ -66,21 +70,19 @@ class CadastroController extends Controller
                     //  Se a coluna estiver preenchida, a conta já foi cadastrada e excluída, então o novo cadastro é permitido
                     //  É feito um update nas colunas de nome, senha e deleted_at (null)
                 } else {
-                    $user = UserHelper::select()->where('id', $searchUser->id)->whereNotNull('deleted_at')
-                        ->update([
-                            'deleted_at' => null,
-                            'nome' => $request->nome,
-                            'senha' => $request->senha
-                        ]);
-                    dd($user);
+                    // dd($user);
+                    $searchUser = DB::table('user_helpers')->where('email', $request->email)->first();
+                    // dd($searchUser);
+                    $user = UserHelper::query()->where('id', $searchUser->id)->restore();
+                    // dd($user);
 
-                    $this->sendMail($user);
+                    $this->sendMail($request);
                     //  Após
                     return redirect()->route('site.principal')->with('success', 'Usuário cadastrado com sucesso!');
                 }
             }
         } catch (Exception $e) {
-
+            dd($e);
             return redirect()->route('site.cadastro')->with('error', 'Erro ao cadastrar usuário');
         }
     }
@@ -90,11 +92,13 @@ class CadastroController extends Controller
         try {
             // dd('caiu aqui');
             //  Tenta deletar o usuário com base no parâmetro recuperado do ID
-            UserHelper::query()->where('id', session('id'))->update([
+            $user = UserHelper::query()->where('id', session('id'))->update([
                 'deleted_at' => Carbon::now(),
             ]);
+            session()->forget('id');
+            // dd($user);
 
-            return redirect()->route('site.principal')->with('warning', 'Usuário excluido com sucesso');
+            return redirect()->action([PrincipalController::class, 'principal'])->with('warning', 'Usuário deletado com sucesso');
         } catch (Exception $e) {
             //  Retorna para a tela principal com um erro
             dd($e);
@@ -105,7 +109,7 @@ class CadastroController extends Controller
     public function sendMail($user)
     {
         try {
-            Mail::send('mail.emailVerification', ['linkValidation', 'www.teste.com'], function ($message) {
+            Mail::send('mail.emailVerification', ['linkValidation' => 'www.teste.com', 'user' => $user], function ($message) use ($user) {
                 try {
                     $message->bcc($user->email, $user->nome)
                         ->subject('Seja bem vindo ao Fake Luxury Hostel, ' . $user->nome . '!');

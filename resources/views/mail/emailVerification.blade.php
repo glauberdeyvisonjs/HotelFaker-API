@@ -25,6 +25,10 @@ a {text-decoration: none;}
 </xml>
 <![endif]-->
     <style type="text/css">
+        :root {
+            color-scheme: light;
+        }
+
         #outlook a {
             padding: 0;
         }
@@ -319,57 +323,6 @@ a {text-decoration: none;}
             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;background-position:center top">
             <tr style="border-collapse:collapse">
                 <td valign="top" style="padding:0;Margin:0">
-                    <table cellpadding="0" cellspacing="0" class="es-content" align="center"
-                        style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
-                        <tr style="border-collapse:collapse">
-                            <td class="es-adaptive" style="padding:0;Margin:0;background-color:#f7f7f7"
-                                bgcolor="#f7f7f7" align="center">
-                                <table class="es-content-body"
-                                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:600px"
-                                    cellspacing="0" cellpadding="0" align="center">
-                                    <tr style="border-collapse:collapse">
-                                        <td align="left" style="padding:10px;Margin:0">
-                                            <!--[if mso]><table style="width:580px"><tr><td style="width:280px" valign="top"><![endif]-->
-                                            <table class="es-left" cellspacing="0" cellpadding="0" align="left"
-                                                style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
-                                                <tr style="border-collapse:collapse">
-                                                    <td align="left" style="padding:0;Margin:0;width:280px">
-                                                        <table width="100%" cellspacing="0" cellpadding="0"
-                                                            role="presentation"
-                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                            <tr style="border-collapse:collapse">
-                                                                <td class="es-infoblock es-m-txt-c" align="left"
-                                                                    style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#CCCCCC">
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <!--[if mso]></td><td style="width:20px"></td><td style="width:280px" valign="top"><![endif]-->
-                                            <table class="es-right" cellspacing="0" cellpadding="0" align="right"
-                                                style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
-                                                <tr style="border-collapse:collapse">
-                                                    <td align="left" style="padding:0;Margin:0;width:280px">
-                                                        <table width="100%" cellspacing="0" cellpadding="0"
-                                                            role="presentation"
-                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                            <tr style="border-collapse:collapse">
-                                                                <td align="right" class="es-infoblock es-m-txt-c"
-                                                                    style="padding:0;Margin:0;line-height:14px;font-size:12px;color:#CCCCCC">
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <!--[if mso]></td></tr></table><![endif]-->
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
                     <table class="es-header" align="center" cellspacing="0" cellpadding="0"
                         style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
                         <tr style="border-collapse:collapse">
@@ -401,7 +354,7 @@ a {text-decoration: none;}
                                                                 <td align="center"
                                                                     style="padding:0;Margin:0;padding-left:20px;padding-right:20px;font-size:0;">
                                                                     <img class="adapt-img"
-                                                                        src="C:\Users\glaub\workspace\login-helper\public\img\logo_black.png"
+                                                                        src="https://images2.imgbox.com/07/3b/imGcfPVN_o.png"
                                                                         alt="Image"
                                                                         style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;padding-top:5px;"
                                                                         title="Image" width="200px">
@@ -439,7 +392,7 @@ a {text-decoration: none;}
                                                                     style="padding:0;Margin:0">
                                                                     <h2
                                                                         style="Margin:0;line-height:29px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:24px;font-style:normal;font-weight:normal;color:#333333">
-                                                                        Hey there!<br></h2>
+                                                                        Hey there, {{ $user->nome }}!<br></h2>
                                                                 </td>
                                                             </tr>
                                                             <tr style="border-collapse:collapse">
@@ -448,7 +401,7 @@ a {text-decoration: none;}
                                                                     <p
                                                                         style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
                                                                         We received a request to set your email to
-                                                                        hello@name.com. If this is correct, please
+                                                                        {{ $user->email }}. If this is correct, please
                                                                         confirm by clicking the button below. If you
                                                                         don’t know why you got this email, please tell
                                                                         us straight away so we can fix this for you.</p>

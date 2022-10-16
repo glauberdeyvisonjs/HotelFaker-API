@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Models\UserHelper;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class PrincipalController extends Controller
 {
     public function principal(Request $request)
     {
-        if(!is_null(session()->get('id'))){
+        if (!is_null(session()->get('id'))) {
             return redirect()->route('app.home');
         } else {
             return view('site.principal');
-
         }
     }
 
@@ -44,25 +44,20 @@ class PrincipalController extends Controller
         //  Caso não sejam iguais, $existe ficará null
         $existe = $user
             ->where('email', $email)
-            ->where('senha', $senha)
+            ->whereNull('deleted_at')
             ->first();
 
         //  Se o parâmetro de e-mail vindo do request existir no banco de dados...
-        if (isset($existe->email)) {
-            
-            //  Se a sessão não estiver ativa, iniciar ela
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
+        if (isset($existe->email) && Hash::check($request->senha, $existe->senha)) {
 
-        //  ... atribua o id e e-mail para a session...
-            session()->put('id',$existe->id);
-            session()->put('email',$existe->email);
+            //  ... atribua o id e e-mail para a session...
+            session()->put('id', $existe->id);
+            session()->put('email', $existe->email);
 
-        //  ... e redirecione para a rota home.
+            //  ... e redirecione para a rota home.
             return redirect()->route('app.home');
 
-        //  Se o e-mail informado não existir, redirecione de volta informando um erro.
+            //  Se o e-mail informado não existir, redirecione de volta informando um erro.
         } else {
             return redirect()->route('site.principal')->with('error', 'Usuário ou senha inválidos');
         }
@@ -70,7 +65,7 @@ class PrincipalController extends Controller
 
     public function logout()
     {
-        session()->forget(['id','email']);
+        session()->forget(['id', 'email']);
         return redirect()->route('site.principal');
     }
 }

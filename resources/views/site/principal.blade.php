@@ -17,12 +17,13 @@
                 @endif
 
                 <div class="password-container">
+                    
                     <input name="senha" type="password" id="field-password" placeholder="********" />
 
                     @if ($errors->has('senha'))
-                    <div id="erros">
-                        {{ $errors->first('senha') }}
-                    </div>
+                        <div id="erros">
+                            {{ $errors->first('senha') }}
+                        </div>
                     @endif
 
                     @include('site.layouts._partials.flash-message')
