@@ -17,11 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 50);
             $table->string('email', 50)->unique();
-            $table->string('senha', 50);
+            $table->string('senha', 80);
             // $table->timestamps();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->softDeletes();
+            // $table->text('ans');
         });
     }
 
