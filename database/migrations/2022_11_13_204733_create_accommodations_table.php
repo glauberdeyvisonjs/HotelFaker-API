@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_helpers', function (Blueprint $table) {
+        Schema::create('accommodations', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 50);
-            $table->string('email', 50)->unique();
-            $table->string('senha', 80);
-            // $table->timestamps();
+            $table->string('number')->unique();
+            $table->string('floor');
+            $table->string('cost_per_hour');
+            $table->string('cost_daily_rate');
+            $table->string('cost_month_rate');
+            $table->enum('flag_situation', ['0', '1'])->default('0')->comment('0 = available, 1 = occupied');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-            $table->softDeletes();
-            // $table->text('ans');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_helpers');
+        Schema::dropIfExists('accommodations');
     }
 };

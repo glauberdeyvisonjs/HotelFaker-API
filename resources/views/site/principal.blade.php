@@ -18,11 +18,11 @@
 
                 <div class="password-container">
                     
-                    <input name="senha" type="password" id="field-password" placeholder="********" />
+                    <input name="password" type="password" id="field-password" placeholder="********" />
 
-                    @if ($errors->has('senha'))
+                    @if ($errors->has('password'))
                         <div id="erros">
-                            {{ $errors->first('senha') }}
+                            {{ $errors->first('password') }}
                         </div>
                     @endif
 
@@ -34,9 +34,9 @@
             <section class="password-infos">
                 <div>
                     <input type="checkbox" />
-                    <span>Lembrar Senha</span>
+                    <span>Lembrar password</span>
                 </div>
-                <a href="{{ asset('/recuperar-senha') }}">Esqueceu sua senha?</a>
+                <a href="{{ asset('/recuperar-password') }}">Esqueceu sua password?</a>
             </section>
 
             <button type="submit" class="btn-submit">Login</button>

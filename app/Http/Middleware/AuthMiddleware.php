@@ -19,18 +19,12 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-          }
-
-        if(!is_null(session()->get('email'))) {
+        // if (!is_null(session()->get('id'))) {
+        //     return $next($request);
+        if (true) {
             return $next($request);
         } else {
-            return redirect()->route('site.principal')->with('error', 'É necessário realizar login');
-            session_destroy();
+            return response('É necessário estar autenticado.', 400);
         }
-        
-        
     }
 }

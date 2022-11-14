@@ -33,23 +33,23 @@
                 @endif
 
                 <div class="password-container">
-                    <span>Insira sua senha:</span>
+                    <span>Insira sua password:</span>
 
-                    <input name = "senha" type="password" id="field-password" placeholder="********" />
+                    <input name = "password" type="password" id="field-password" placeholder="********" />
 
-                    @if ($errors->has('senha'))
+                    @if ($errors->has('password'))
                     <div style="font-size: 11px; color: red; margin-bot: 0px;">
-                        {{ $errors->first('senha') }}
+                        {{ $errors->first('password') }}
                     </div>
                     @endif
 
                 </div>
                 <div class="password-container">
-                    <span>Confirme sua senha:</span>
-                    <input name = "confirm_senha" type="password" id="field-password" placeholder="********" />
-                    @if ($errors->has('confirm_senha'))
+                    <span>Confirme sua password:</span>
+                    <input name = "confirm_password" type="password" id="field-password" placeholder="********" />
+                    @if ($errors->has('confirm_password'))
                     <div style="font-size: 11px; color: red; margin-bot: 0px;">
-                        {{ $errors->first('confirm_senha') }}
+                        {{ $errors->first('confirm_password') }}
                     </div>
                     @endif
                     

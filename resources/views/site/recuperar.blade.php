@@ -20,7 +20,7 @@
 
             @include('site.layouts._partials.flash-message')
 
-            <button id="btn-recuperar">Recuperar senha</button>
+            <button id="btn-recuperar">Recuperar password</button>
 
             <footer>
                 <span><a href="/">Voltar para o Login</a></span>
