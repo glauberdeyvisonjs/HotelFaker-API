@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => fake()->name(),
                 'email' => fake()->safeEmail(),
+                'cpf' => '123123' . random_int(10000, 99999),
                 'email_verified_at' => now(),
                 'password' => Hash::make(random_int(100000, 999999)),
             ]);

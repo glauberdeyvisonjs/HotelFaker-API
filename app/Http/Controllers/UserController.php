@@ -41,6 +41,7 @@ class UserController extends Controller
             if (is_null($searchUser)) {
                 $user = User::create([
                     'email' => $request->email,
+                    'cpf' => trim($request->cpf),
                     'name' => $request->name,
                     'password' => Hash::make($request->password)
                 ]);
@@ -64,6 +65,7 @@ class UserController extends Controller
                 } else {
                     $user = User::query()->where('id', $searchUser->id)->update([
                         'name' => $request->name,
+                        'cpf' => trim($request->cpf),
                         'password' => Hash::make($request->password),
                         'deleted_at' => null
                     ]);
@@ -125,7 +127,6 @@ class UserController extends Controller
             $user = User::query()->where('id', $id)->update([
                 'deleted_at' => Carbon::now(),
             ]);
-            session()->forget('id');
 
             return response('Usuário deletado com sucesso', 200);
         } catch (Exception $e) {

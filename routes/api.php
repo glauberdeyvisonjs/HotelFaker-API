@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollaboratorsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -35,4 +36,8 @@ Route::middleware('log.auth')->prefix('/app')->name('app.')->group(function () {
     Route::post('/recuperar', [RecuperarController::class, 'recuperar'])->name('recuperar');
     Route::get('/logout', [HomeController::class, 'logout'])->name('sair');
     Route::post('/delete/{id}', [UserController::class, 'destroy'])->name('delete');
+    Route::get('/list/collaborators', [CollaboratorsController::class, 'list'])->name('list.collaborators');
+    Route::post('/store/collaborators', [CollaboratorsController::class, 'store'])->name('store.collaborators');
+    Route::get('/show/collaborators/{id}', [CollaboratorsController::class, 'show'])->name('show.collaborators');
+    Route::post('/delete/collaborators/{id}', [CollaboratorsController::class, 'destroy'])->name('delete.collaborators');
 });
