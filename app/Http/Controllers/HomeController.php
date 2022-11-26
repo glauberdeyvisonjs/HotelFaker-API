@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
+        // dd('caiu aqui');
         $existe = User::where('email', $request->email)->whereNull('deleted_at')->first();
+        // dd($existe);
 
         //  Se o parâmetro de e-mail vindo do request existir no banco de dados...
         if (isset($existe->email) && Hash::check($request->password, $existe->password)) {
 
             //  ... atribua o id e e-mail para a session...
             session()->put('id', $existe->id);
-
-            //  ... e redirecione para a rota home.
-            return response('Logado!', 200);
+            return response()->json($existe);
 
             //  Se o e-mail informado não existir, redirecione de volta informando um erro.
         } else {

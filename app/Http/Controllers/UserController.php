@@ -33,7 +33,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd('oi');
         $searchUser = DB::table('users')->where('email', $request->email)->first();
+        // dump($searchUser);
         //  Puxa da tabela a informação de e-mail e compara com a informação vinda do request
         //  Caso tenha uma combinação igual, preencherá a variável, caso não tenha, a variável fica nula
         try {
@@ -47,6 +49,14 @@ class UserController extends Controller
                 ]);
 
                 $this->sendMail($user);
+
+                $usuario = [
+                    "name" => $user->name,
+                    "email" => $user->email,
+                    "cpf" => $user->cpf,
+                    "created_at" => $user->created_at,
+                    "updated_at" => $user->updated_at,
+                ];
 
                 return response()->json($user);
 
@@ -140,8 +150,8 @@ class UserController extends Controller
         try {
             Mail::send('mail.emailVerification', ['linkValidation' => 'www.teste.com', 'user' => $user], function ($message) use ($user) {
                 try {
-                    $message->bcc($user->email, $user->nome)
-                        ->subject('Seja bem vindo ao Fake Luxury Hostel, ' . $user->nome . '!');
+                    $message->bcc($user->email, $user->name)
+                        ->subject('Seja bem vindo ao Fake Luxury Hostel, ' . $user->name . '!');
                 } catch (\Exception $e) {
                     return (object) [
                         'status_code' => 500,
