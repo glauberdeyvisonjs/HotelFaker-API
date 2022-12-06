@@ -83,7 +83,7 @@ class UserController extends Controller
 
                     $this->sendMail($user);
                     //  Após
-                    return response($user, 200);
+                    return response()->json($user);
                 }
             }
         } catch (Exception $e) {
@@ -151,7 +151,7 @@ class UserController extends Controller
             Mail::send('mail.emailVerification', ['linkValidation' => 'www.teste.com', 'user' => $user], function ($message) use ($user) {
                 try {
                     $message->bcc($user->email, $user->name)
-                        ->subject('Seja bem vindo ao Fake Luxury Hostel, ' . $user->name . '!');
+                        ->subject('Seja bem vindo ao Hotel Faker, ' . $user->name . '!');
                 } catch (\Exception $e) {
                     return (object) [
                         'status_code' => 500,

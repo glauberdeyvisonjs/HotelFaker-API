@@ -9,7 +9,7 @@
     <meta name="x-apple-disable-message-reformatting">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="telephone=no" name="format-detection">
-    <title>Trigger newsletter</title>
+    <title>Hotel Faker</title>
     <!--[if (mso 16)]>
 <style type="text/css">
 a {text-decoration: none;}
@@ -354,7 +354,7 @@ a {text-decoration: none;}
                                                                 <td align="center"
                                                                     style="padding:0;Margin:0;padding-left:20px;padding-right:20px;font-size:0;">
                                                                     <img class="adapt-img"
-                                                                        src="https://images2.imgbox.com/07/3b/imGcfPVN_o.png"
+                                                                        src="https://images2.imgbox.com/d3/c4/r960ZNtS_o.png"
                                                                         alt="Image"
                                                                         style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;padding-top:5px;"
                                                                         title="Image" width="200px">

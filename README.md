@@ -1,4 +1,4 @@
-# Fake Hostel
+# Hotel Faker
 
 This project is about an internal hotel management system, working with reservations, check-in, immediate accommodation, etc.
 
