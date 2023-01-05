@@ -19,12 +19,10 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // if (!is_null(session()->get('id'))) {
-        //     return $next($request);
-        if (true) {
+        if (!is_null(session()->get('id'))) {
             return $next($request);
         } else {
-            return response('É necessário estar autenticado.', 400);
+            return response()->json(['error' => 'Você não está logado!'], 401);
         }
     }
 }
