@@ -30,7 +30,7 @@ Route::prefix('/cadastro')->name('cadastro.')->group(function () {
 
 // Route::get('/recuperar-password', [RecuperarController::class, 'view'])->name('site.recuperar');
 
-Route::prefix('/app')->name('app.')->group(function () {
+Route::prefix('/app')->middleware('log.auth')->name('app.')->group(function () {
     Route::get('/show/{id}', [UserController::class, 'show'])->name('show');
     Route::get('/list', [UserController::class, 'list'])->name('list.users');
     Route::get('/logout', [HomeController::class, 'logout'])->name('sair');

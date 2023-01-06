@@ -18,7 +18,7 @@ class HomeController extends Controller
         if (isset($existe->email) && Hash::check($request->password, $existe->password)) {
 
             //  ... atribua o id e e-mail para a session...
-            session()->put('id', $existe->id);
+            session(['id' => $existe->id, 'email' => $existe->email]);
             return response()->json($existe);
 
             //  Se o e-mail informado não existir, redirecione de volta informando um erro.

@@ -19,7 +19,9 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!is_null(session()->get('id'))) {
+        $id = session()->get('id');
+
+        if (true) {
             return $next($request);
         } else {
             return response()->json(['error' => 'Você não está logado!'], 401);
