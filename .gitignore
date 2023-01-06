@@ -13,5 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-# .env
-# *.env
+.env
+*.env
+.env.example
